@@ -20,6 +20,11 @@ export class UserService {
     return toUserDto(user);
   }
 
+  async findAll() {
+    const users = (await this.userRepo.find()) || [];
+    return users.map((it) => toUserDto(it));
+  }
+
   async findByLogin({
     account_name,
     password,
@@ -45,7 +50,7 @@ export class UserService {
   }
 
   async create(userDto: CreateUserDto): Promise<UserDto> {
-    const { account_name, password, email } = userDto;
+    const { account_name, password, email, real_name, password_salt } = userDto;
 
     // check if the user exists in the db
     const userInDb = await this.userRepo.findOne({ where: { account_name } });
@@ -57,6 +62,8 @@ export class UserService {
       account_name,
       password,
       email,
+      real_name,
+      password_salt,
     });
 
     await this.userRepo.save(user);

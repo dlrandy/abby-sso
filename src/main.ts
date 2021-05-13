@@ -1,13 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import { getDbConnectionOptions, runDbMigrations } from '@shared/utils';
-import { AppModule } from './app.module';
 
+import { AppModule } from './app.module';
 async function bootstrap() {
-  const app = await NestFactory.create(
-    AppModule.forRoot(await getDbConnectionOptions(process.env.NODE_ENV)),
-    {},
-  );
-  // await runDbMigrations();
+  const app = await NestFactory.create(AppModule.forRoot());
   await app.listen(3000);
+  console.log('监听3000');
 }
 bootstrap();

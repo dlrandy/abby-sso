@@ -15,9 +15,9 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsPhoneNumber()
-  email: string;
+  mobile: string;
 
   @IsNotEmpty()
   @IsEmail()
-  mobile: string;
+  email: string;
 }

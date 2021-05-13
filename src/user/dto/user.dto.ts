@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsEmail, IsPhoneNumber } from 'class-validator';
+import { Timestamp } from 'typeorm';
 
 export class UserDto {
   @IsNotEmpty()
@@ -17,6 +18,4 @@ export class UserDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
-
-  createdAt?: Date;
 }

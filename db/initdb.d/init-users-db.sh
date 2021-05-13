@@ -23,7 +23,7 @@ psql -v ON_ERROR_STOP=1  --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-
     id smallint NOT NULL DEFAULT NEXTVAL ('user_seq') ,
     account_name varchar(24) NOT NULL ,
     real_name varchar(20) NOT NULL ,
-    password char(32) NOT NULL ,
+    password varchar(100) NOT NULL ,
     password_salt char(6) NOT NULL ,
     mobile varchar(15) NOT NULL DEFAULT '0' ,
     email varchar(100),
