@@ -1,8 +1,32 @@
 # GET https://example.com/topics/1 HTTP/1.1
-POST http://localhost:3000/user/ HTTP/1.1
+# POST http://localhost:3000/user/ HTTP/1.1
+# content-type: application/json
+
+# {
+#     "name": "sample",
+#     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+# }
+
+# POST http://localhost:3000/authentication/register HTTP/1.1
+# content-type: application/json
+
+# {
+#   "account_name": "aaaaaa",
+#   "real_name": "rrrrrr",
+#   "password": "111111",
+#   "password_salt": "uuuuu",
+#   "mobile": "8635328",
+#   "email": "123@qq.com"
+# }
+
+POST http://localhost:3000/authentication/log-in HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+  "account_name": "aaaaaa",
+  "real_name": "rrrrrr",
+  "password": "111111",
+  "password_salt": "uuuuu",
+  "mobile": "8635328",
+  "email": "123@qq.com"
 }

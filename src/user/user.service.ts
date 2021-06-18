@@ -20,6 +20,28 @@ export class UserService {
     return toUserDto(user);
   }
 
+  async getById(id: string) {
+    const user = await this.userRepo.findOne({ id });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
+  async getByEmail(email: string) {
+    const user = await this.userRepo.findOne({ email });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this email does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
   async findAll() {
     const users = (await this.userRepo.find()) || [];
     return users.map((it) => toUserDto(it));
