@@ -1,5 +1,7 @@
-import { CreateUserDto } from '@user/dto/user.create.dto';
-
-export class RegisterDto extends CreateUserDto {}
-
-export default RegisterDto;
+export class RegisterDto {
+    email: string;
+    name: string;
+    password: string;
+  }
+  
+  export default RegisterDto;

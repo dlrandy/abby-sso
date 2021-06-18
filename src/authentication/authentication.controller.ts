@@ -23,14 +23,12 @@ export class AuthenticationController {
   async register(@Body() registrationData: RegisterDto) {
     return this.authenticationService.register(registrationData);
   }
-
+  //TODO: how decorator works?
   @HttpCode(200)
   @UseGuards(LocalAuthenticationGuard)
   @Post('log-in')
   async logIn(@Req() request: RequestWithUser, @Res() response: Response) {
     const { user } = request;
-    console.log(user);
-
     const cookie = this.authenticationService.getCookieWithJwtAccessToken(
       user.id,
     );
@@ -41,7 +39,7 @@ export class AuthenticationController {
 
   @UseGuards(JwtAuthenticationGuard)
   @Post('log-out')
-  async logOut(@Req() request: RequestWithUser, @Res() response: Response) {
+  async logOut(@Res() response: Response) {
     response.setHeader(
       'Set-Cookie',
       this.authenticationService.getCookieForLogOut(),
